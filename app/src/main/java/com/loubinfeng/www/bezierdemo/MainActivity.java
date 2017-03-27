@@ -13,11 +13,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void handle2Bezier(View view){
-        startActivity(new Intent(this,Bezier2Activity.class));
+    public void handle2Bezier(View view) {
+        startActivity(new Intent(this, Bezier2Activity.class));
     }
 
-    public void handle3Bezier(View view){
-        startActivity(new Intent(this,Bezier3Activity.class));
+    public void handle3Bezier(View view) {
+        startActivity(new Intent(this, Bezier3Activity.class));
+    }
+
+    public void handleDrawPad(View view) {
+        startActivity(new Intent(this, DrawPadActivity.class));
     }
 }

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/content_bezier3"
+    android:id="@+id/content_draw_pad"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
-    <com.loubinfeng.www.bezierdemo.views.Bezier3View
+    <com.loubinfeng.www.bezierdemo.views.DrawPadView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
