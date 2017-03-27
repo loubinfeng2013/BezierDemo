@@ -10,11 +10,11 @@ import android.view.MotionEvent;
 import android.view.View;
 
 /**
- * 二阶贝塞尔曲线View
+ * 三阶贝塞尔曲线View
  * Created by loubinfeng on 2017/3/27.
  */
 
-public class Bezier2View extends View {
+public class Bezier3View extends View {
 
     //起始点
     private float mStartPointX;
@@ -23,8 +23,10 @@ public class Bezier2View extends View {
     private float mEndPointX;
     private float mEndPointY;
     //控制点
-    private float mFlagPointX;
-    private float mFlagPointY;
+    private float mFlagPoint1X;
+    private float mFlagPoint1Y;
+    private float mFlagPoint2X;
+    private float mFlagPoint2Y;
     //连线画笔
     private Paint mLinePaint;
     //点画笔
@@ -33,17 +35,18 @@ public class Bezier2View extends View {
     private Paint mBezierPaint;
     //曲线路径
     private Path mBezierPath;
+    //第二个手指是否按下
+    private boolean isSecondPointDown = false;
 
-
-    public Bezier2View(Context context) {
+    public Bezier3View(Context context) {
         this(context, null);
     }
 
-    public Bezier2View(Context context, AttributeSet attrs) {
+    public Bezier3View(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public Bezier2View(Context context, AttributeSet attrs, int defStyleAttr) {
+    public Bezier3View(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
@@ -70,8 +73,10 @@ public class Bezier2View extends View {
         mStartPointY = h / 2;
         mEndPointX = w * 3 / 4;
         mEndPointY = h / 2;
-        mFlagPointX = w / 2;
-        mFlagPointY = h / 2 - 300;
+        mFlagPoint1X = w / 2;
+        mFlagPoint1Y = h / 2 - 300;
+        mFlagPoint2X = w / 2;
+        mFlagPoint2Y = h / 2 + 300;
     }
 
     @Override
@@ -80,23 +85,41 @@ public class Bezier2View extends View {
         //画点
         canvas.drawPoint(mStartPointX, mStartPointY, mPointPaint);
         canvas.drawPoint(mEndPointX, mEndPointY, mPointPaint);
-        canvas.drawPoint(mFlagPointX, mFlagPointY, mPointPaint);
+        canvas.drawPoint(mFlagPoint1X, mFlagPoint1Y, mPointPaint);
+        canvas.drawPoint(mFlagPoint2X, mFlagPoint2Y, mPointPaint);
         //画连线
-        canvas.drawLine(mStartPointX, mStartPointY, mFlagPointX, mFlagPointY, mLinePaint);
-        canvas.drawLine(mFlagPointX, mFlagPointY, mEndPointX, mEndPointY, mLinePaint);
+        canvas.drawLine(mStartPointX, mStartPointY, mFlagPoint1X, mFlagPoint1Y, mLinePaint);
+        canvas.drawLine(mFlagPoint1X, mFlagPoint1Y, mFlagPoint2X, mFlagPoint2Y, mLinePaint);
+        canvas.drawLine(mFlagPoint2X, mFlagPoint2Y, mEndPointX, mEndPointY, mLinePaint);
         //画Bezier曲线
         mBezierPath.reset();
         mBezierPath.moveTo(mStartPointX,mStartPointY);
-        mBezierPath.quadTo(mFlagPointX,mFlagPointY,mEndPointX,mEndPointY);//二阶贝塞尔曲线函数
+        mBezierPath.cubicTo(mFlagPoint1X,mFlagPoint1Y,mFlagPoint2X,mFlagPoint2Y,mEndPointX,mEndPointY);//三阶贝塞尔曲线api
         canvas.drawPath(mBezierPath,mBezierPaint);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_MOVE){
-            mFlagPointX = event.getX();
-            mFlagPointY = event.getY();
-            invalidate();
+
+        switch (event.getAction()&MotionEvent.ACTION_MASK){
+
+            case MotionEvent.ACTION_POINTER_DOWN:
+                isSecondPointDown = true;
+                break;
+
+            case MotionEvent.ACTION_POINTER_UP:
+                isSecondPointDown = false;
+                break;
+
+            case MotionEvent.ACTION_MOVE:
+                mFlagPoint1X = event.getX(0);
+                mFlagPoint1Y = event.getY(0);
+                if (isSecondPointDown){
+                    mFlagPoint2X = event.getX(1);
+                    mFlagPoint2Y = event.getY(1);
+                }
+                invalidate();
+                break;
         }
         return true;
     }

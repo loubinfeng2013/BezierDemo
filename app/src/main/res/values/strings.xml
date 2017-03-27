@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">BezierDemo</string>
     <string name="title_activity_bezier2">Bezier2Activity</string>
+    <string name="title_activity_bezier3">Bezier3Activity</string>
 </resources>
