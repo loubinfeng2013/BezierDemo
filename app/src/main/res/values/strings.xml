@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BezierDemo</string>
+    <string name="title_activity_bezier2">Bezier2Activity</string>
+</resources>
