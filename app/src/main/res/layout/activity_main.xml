@@ -23,4 +23,10 @@
         android:onClick="handleDrawPad"
         android:text="画图板" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:onClick="handlePathMorph"
+        android:text="path morph" />
+
 </LinearLayout>

@@ -24,4 +24,8 @@ public class MainActivity extends AppCompatActivity {
     public void handleDrawPad(View view) {
         startActivity(new Intent(this, DrawPadActivity.class));
     }
+
+    public void handlePathMorph(View view){
+        startActivity(new Intent(this,PathMorphActivity.class));
+    }
 }

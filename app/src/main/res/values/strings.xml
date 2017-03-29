@@ -3,4 +3,5 @@
     <string name="title_activity_bezier2">Bezier2Activity</string>
     <string name="title_activity_bezier3">Bezier3Activity</string>
     <string name="title_activity_draw_pad">DrawPadActivity</string>
+    <string name="title_activity_path_morph">PathMorphActivity</string>
 </resources>

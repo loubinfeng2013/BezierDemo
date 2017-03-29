@@ -26,6 +26,10 @@
         <activity
             android:name=".DrawPadActivity"
             android:label="@string/title_activity_draw_pad"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PathMorphActivity"
+            android:label="@string/title_activity_path_morph"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
