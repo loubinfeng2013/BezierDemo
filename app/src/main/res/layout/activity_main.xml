@@ -29,4 +29,10 @@
         android:onClick="handlePathMorph"
         android:text="path morph" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:onClick="handleBezierWave"
+        android:text="水波浪效果" />
+
 </LinearLayout>

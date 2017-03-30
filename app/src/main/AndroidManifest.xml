@@ -30,7 +30,8 @@
         <activity
             android:name=".PathMorphActivity"
             android:label="@string/title_activity_path_morph"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".BezierWaveActivity"></activity>
     </application>
 
 </manifest>
