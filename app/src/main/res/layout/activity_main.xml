@@ -35,4 +35,10 @@
         android:onClick="handleBezierWave"
         android:text="水波浪效果" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:onClick="handlePathAnim"
+        android:text="轨迹动画效果" />
+
 </LinearLayout>

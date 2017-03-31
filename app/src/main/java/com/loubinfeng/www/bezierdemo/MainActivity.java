@@ -32,4 +32,8 @@ public class MainActivity extends AppCompatActivity {
     public void handleBezierWave(View view){
         startActivity(new Intent(this,BezierWaveActivity.class));
     }
+
+    public void handlePathAnim(View view){
+        startActivity(new Intent(this,PathAnimActivity.class));
+    }
 }
